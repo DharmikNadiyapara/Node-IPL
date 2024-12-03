@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite id="0" name="/projects/challenge/test/admin.test.js" errors="0" package="/projects/challenge/test/admin.test.js" hostname="localhost" tests="24" failures="0" time="4.575" timestamp="2024-12-03T16:45:04">
+  <testsuite id="0" name="/projects/challenge/test/admin.test.js" errors="0" package="/projects/challenge/test/admin.test.js" hostname="localhost" tests="24" failures="0" time="4.646" timestamp="2024-12-03T16:57:07">
     <properties>
     </properties>
     <testcase classname="Admin successful login" name="Admin successful login" time="0">

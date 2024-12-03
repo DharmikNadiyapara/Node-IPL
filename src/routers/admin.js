@@ -21,7 +21,7 @@ adminRouter.post("/login", async (req, res) => {
   }
 })
 
-adminRouter.post("/addPlayer", async (req, res) => {
+adminRouter.post("/addPlayer", adminAuth, async (req, res) => {
   try {
     const { name, age, type, bats, bowls, bowling_style } = req.body;
     if (!name || !age || !type || !bats || !bowls || !bowling_style) {
@@ -34,7 +34,7 @@ adminRouter.post("/addPlayer", async (req, res) => {
   }
 })
 
-adminRouter.get("/viewPlayer/:id", async (req, res) => {
+adminRouter.get("/viewPlayer/:id", adminAuth, async (req, res) => {
   try {
     const { id } = req.params;
     const player = await Players.findOne({ _id: id })
@@ -44,7 +44,7 @@ adminRouter.get("/viewPlayer/:id", async (req, res) => {
   }
 })
 
-adminRouter.patch("/editPlayer/:id", async (req, res) => {
+adminRouter.patch("/editPlayer/:id", adminAuth, async (req, res) => {
   try {
     await Players.findByIdAndUpdate({ _id: req.params.id }, req.body)
     res.status(200).json({ message: "Updated successfully" })
@@ -53,7 +53,7 @@ adminRouter.patch("/editPlayer/:id", async (req, res) => {
   }
 })
 
-adminRouter.delete("/deletePlayer/:id", async (req, res) => {
+adminRouter.delete("/deletePlayer/:id", adminAuth, async (req, res) => {
   try {
     await Players.findByIdAndDelete({ _id: req.params.id })
     res.status(200).json({ message: "Deleted successfully" })
@@ -62,7 +62,7 @@ adminRouter.delete("/deletePlayer/:id", async (req, res) => {
   }
 })
 
-adminRouter.get("/viewPlayers/:teamName", async (req, res) => {
+adminRouter.get("/viewPlayers/:teamName", adminAuth, async (req, res) => {
   try {
     const data = await Players.find({ bought_by: req.params.teamName })
     res.status(200).json(data)
@@ -71,7 +71,7 @@ adminRouter.get("/viewPlayers/:teamName", async (req, res) => {
   }
 })
 
-adminRouter.patch("/playerBought/:teamName", async (req, res) => {
+adminRouter.patch("/playerBought/:teamName", adminAuth, async (req, res) => {
   try {
     const player = await Players.findById(req.body.id);
     const newPlayer = await Players.findByIdAndUpdate(player._id, {
@@ -84,7 +84,7 @@ adminRouter.patch("/playerBought/:teamName", async (req, res) => {
   }
 })
 
-adminRouter.patch("/players/bid/:id", async (req, res) => {
+adminRouter.patch("/players/bid/:id", adminAuth, async (req, res) => {
   try {
     const player = await Players.findById(req.params.id);
     const { teamName } = req.body;
@@ -112,7 +112,7 @@ adminRouter.patch("/players/bid/:id", async (req, res) => {
 });
 
 
-adminRouter.get("/displayPlayer/:count", async (req, res) => {
+adminRouter.get("/displayPlayer/:count", adminAuth, async (req, res) => {
   const count = parseInt(req.params.count);
   const type = req.query.type;
   try {
