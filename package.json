@@ -6,7 +6,7 @@
   "directories": {
     "test": "test"
   },
-   "scripts": {
+  "scripts": {
     "start": "node_modules/.bin/pm2 -f start src/index.js --watch",
     "test": "rm -rf ./test-report.xml && CI=true ./node_modules/.bin/jest --testResultsProcessor ./node_modules/jest-junit-reporter --forceExit;",
     "stop": "node_modules/.bin/pm2 kill"

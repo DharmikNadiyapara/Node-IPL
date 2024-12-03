@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 
-//write your code for JWT token authentication for admin
+const adminAuth = (req,res,next)=>{
+
+}
 
 module.exports = adminAuth;

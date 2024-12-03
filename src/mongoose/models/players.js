@@ -6,26 +6,35 @@ const mongoose = require("mongoose");
 const playersSchema = new mongoose.Schema({
     name: {
         type: String,
+        minlength:3,
+        validate:{
+            validator:(v)=> /^[A-Za-z\s]+$/.test(v)
+        },
         required: true,
     },
     age: {
         type: Number,
+        min:15,
         required: true,
     },
     type: {
         type: String,
+        enum:["Batsman","Bowler","All-rounder"],
         required: true,
     },
     bats: {
         type: String,
+        enum:["Right","Left","NA"],
         required: true,
     },
     bowls: {
         type: String,
+        enum:["Right","Left","NA"],
         required: true,
     },
     bowling_style: {
         type: String,
+        enum:["Fast","Medium","Spin","Leg-spin","Chinaman","NA"],
         required: true,
     },
     bat_avg: {
@@ -94,6 +103,8 @@ const playersSchema = new mongoose.Schema({
     },
     base_price: {
         type: Number,
+        min:1000000,
+        max:20000000,
         default: 1000000,
     },
     sold_price: {
