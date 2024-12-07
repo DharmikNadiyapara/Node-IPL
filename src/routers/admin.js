@@ -120,10 +120,8 @@ adminRouter.get("/displayPlayer/:count", adminAuth, async (req, res) => {
       unsold: true,
       displayed_count: count,
       type: type,
-    })
-      .sort({ base_price: -1 })
-      .exec();
-
+    }).sort({ base_price: -1 });
+    
     if (!player) {
       return res.status(405).send({ error: "No matching player found" });
     }
